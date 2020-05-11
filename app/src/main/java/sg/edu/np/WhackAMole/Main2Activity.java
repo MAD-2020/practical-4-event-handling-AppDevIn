@@ -21,9 +21,10 @@ public class Main2Activity extends AppCompatActivity {
         - Feel free to modify the function to suit your program.
     */
 
-    final String TAG = "Advance Whack-A-Mole";
+    final String TAG = "Whack-A-Mole-2.0";
     int advancedScore;
     Button btnMole;
+    TextView txt_score;
 
     private void readyTimer(){
         /*  HINT:
@@ -67,7 +68,7 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void run() {
                 handler.postDelayed(this, 1000);
-                Log.i(TAG, "run: Introducing new Mole");
+                Log.i(TAG, "New Mole Location");
                 setNewMole();
             }
         };
@@ -100,12 +101,16 @@ public class Main2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         //Get the score
-        advancedScore = getIntent().getExtras().getString("score") == null ? 0 : Integer.parseInt(getIntent().getExtras().getString("score"));
+        advancedScore =  getIntent().getExtras().getInt("score");
+        txt_score = findViewById(R.id.textScore);
 
+        txt_score.setText(String.valueOf(advancedScore));
         Log.v(TAG, "Current User Score: " + String.valueOf(advancedScore));
 
 
         readyTimer();
+
+
 
         for(final int id : BUTTON_IDS){
             /*  HINT:
@@ -147,6 +152,8 @@ public class Main2Activity extends AppCompatActivity {
             Log.v(TAG, "Missed, score deducted!");
         }
 
+        txt_score.setText(String.valueOf(advancedScore));
+
 
     }
 
@@ -163,14 +170,7 @@ public class Main2Activity extends AppCompatActivity {
         //Set the mole for the button
         btnMole = findViewById(BUTTON_IDS[randomLocation]);
         btnMole.setText(R.string.mole);
-
-        //Set OnClickListenter
-        btnMole.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                doCheck(btnMole);
-            }
-        });
+        
 
         //Set the empty in the buttons
         for(final int id : BUTTON_IDS){

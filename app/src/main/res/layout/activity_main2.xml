@@ -114,7 +114,7 @@
         app:layout_constraintGuide_percent="0.67" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 

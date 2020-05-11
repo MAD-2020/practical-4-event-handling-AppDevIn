@@ -151,11 +151,8 @@ public class MainActivity extends AppCompatActivity {
     private void nextLevel(){
         /* Launch advanced page */
 
-        Bundle extras = new Bundle();
-        extras.putInt("score", score);
-
         Intent advanceMole = new Intent(this,Main2Activity.class);
-        advanceMole.putExtras(extras);
+        advanceMole.putExtra("score",score);
 
         startActivity(advanceMole);
 
