@@ -2,6 +2,7 @@ package sg.edu.np.WhackAMole;
 
 import android.content.Intent;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,13 +40,17 @@ public class Main2Activity extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
                 Log.v(TAG, "Ready CountDown!" + millisUntilFinished/ 1000);
                 Toast.makeText(getApplicationContext(), String.valueOf(millisUntilFinished / 1000), Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
             public void onFinish() {
                 Log.v(TAG, "Ready CountDown Complete!");
+                Toast.makeText(getApplicationContext(), "GO!", Toast.LENGTH_SHORT).show();
+
+                placeMoleTimer();
             }
-        };
+        }.start();
     }
     private void placeMoleTimer(){
         /* HINT:
@@ -55,6 +60,19 @@ public class Main2Activity extends AppCompatActivity {
            belongs here.
            This is an infinite countdown timer.
          */
+
+        final Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                handler.postDelayed(this, 1000);
+                Log.i(TAG, "run: Running this");
+            }
+        };
+
+        handler.postDelayed(runnable,1000);
+
+
     }
     private static final int[] BUTTON_IDS = {
         /* HINT:
@@ -75,6 +93,8 @@ public class Main2Activity extends AppCompatActivity {
 
         Log.v(TAG, "Current User Score: " + String.valueOf(advancedScore));
 
+
+        readyTimer();
 
         for(final int id : BUTTON_IDS){
             /*  HINT:
