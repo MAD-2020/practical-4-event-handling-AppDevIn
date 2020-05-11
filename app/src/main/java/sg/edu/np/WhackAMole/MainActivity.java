@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         Log.v(TAG, BUTTON__IDS_TAGS[randomLocation]);
         txt_score.setText(String.valueOf(score));
 
-        if(score%10 == 0){
+        if(score%10 == 0 && score != 0){
             nextLevelQuery();
         }else{
             setNewMole();
