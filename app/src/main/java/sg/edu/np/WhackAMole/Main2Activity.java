@@ -23,6 +23,7 @@ public class Main2Activity extends AppCompatActivity {
 
     final String TAG = "Advance Whack-A-Mole";
     int advancedScore;
+    Button btnMole;
 
     private void readyTimer(){
         /*  HINT:
@@ -66,7 +67,8 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void run() {
                 handler.postDelayed(this, 1000);
-                Log.i(TAG, "run: Running this");
+                Log.i(TAG, "run: Introducing new Mole");
+                setNewMole();
             }
         };
 
@@ -75,9 +77,15 @@ public class Main2Activity extends AppCompatActivity {
 
     }
     private static final int[] BUTTON_IDS = {
-        /* HINT:
-            Stores the 9 buttons IDs here for those who wishes to use array to create all 9 buttons.
-            You may use if you wish to change or remove to suit your codes.*/
+            R.id.button1,
+            R.id.button2,
+            R.id.button3,
+            R.id.button4,
+            R.id.button5,
+            R.id.button6,
+            R.id.button7,
+            R.id.button8,
+            R.id.button9,
     };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +99,9 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+        //Get the score
+        advancedScore = getIntent().getExtras().getString("score") == null ? 0 : Integer.parseInt(getIntent().getExtras().getString("score"));
+
         Log.v(TAG, "Current User Score: " + String.valueOf(advancedScore));
 
 
@@ -101,6 +112,16 @@ public class Main2Activity extends AppCompatActivity {
             This creates a for loop to populate all 9 buttons with listeners.
             You may use if you wish to remove or change to suit your codes.
             */
+
+           final Button button = findViewById(id);
+
+            //Set OnClickListener
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    doCheck(button);
+                }
+            });
         }
     }
     @Override
@@ -115,6 +136,18 @@ public class Main2Activity extends AppCompatActivity {
             Log.v(TAG, "Missed, point deducted!");
             belongs here.
         */
+
+
+        //Check if hit or miss
+        if(btnMole == checkButton){
+            advancedScore++;
+            Log.v(TAG, "Hit, score added!");
+        }else{
+            advancedScore--;
+            Log.v(TAG, "Missed, score deducted!");
+        }
+
+
     }
 
     public void setNewMole()
@@ -125,6 +158,29 @@ public class Main2Activity extends AppCompatActivity {
          */
         Random ran = new Random();
         int randomLocation = ran.nextInt(9);
+
+
+        //Set the mole for the button
+        btnMole = findViewById(BUTTON_IDS[randomLocation]);
+        btnMole.setText(R.string.mole);
+
+        //Set OnClickListenter
+        btnMole.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                doCheck(btnMole);
+            }
+        });
+
+        //Set the empty in the buttons
+        for(final int id : BUTTON_IDS){
+            
+            Button button = findViewById(id);
+            if(button != btnMole){
+                button.setText(R.string.empty);
+            }
+            
+        }
     }
 }
 
