@@ -25,6 +25,7 @@ public class Main2Activity extends AppCompatActivity {
     int advancedScore;
     Button btnMole;
     TextView txt_score;
+    boolean isGamingRunning;
 
     private void readyTimer(){
         /*  HINT:
@@ -107,8 +108,9 @@ public class Main2Activity extends AppCompatActivity {
         txt_score.setText(String.valueOf(advancedScore));
         Log.v(TAG, "Current User Score: " + String.valueOf(advancedScore));
 
-
+        isGamingRunning = false;
         readyTimer();
+        setNewMole();
 
 
 
@@ -124,7 +126,12 @@ public class Main2Activity extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    doCheck(button);
+                    if(isGamingRunning){
+                        doCheck(button);
+                    }else {
+                        Toast.makeText(getApplicationContext(), "Please wait till countdown ends", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             });
         }
@@ -170,7 +177,7 @@ public class Main2Activity extends AppCompatActivity {
         //Set the mole for the button
         btnMole = findViewById(BUTTON_IDS[randomLocation]);
         btnMole.setText(R.string.mole);
-        
+
 
         //Set the empty in the buttons
         for(final int id : BUTTON_IDS){
