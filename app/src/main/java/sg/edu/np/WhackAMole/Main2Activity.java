@@ -20,7 +20,8 @@ public class Main2Activity extends AppCompatActivity {
         - Feel free to modify the function to suit your program.
     */
 
-
+    final String TAG = "Advance Whack-A-Mole";
+    int advancedScore;
 
     private void readyTimer(){
         /*  HINT:
@@ -32,6 +33,19 @@ public class Main2Activity extends AppCompatActivity {
             belongs here.
             This timer countdown from 10 seconds to 0 seconds and stops after "GO!" is shown.
          */
+
+        new CountDownTimer(10000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                Log.v(TAG, "Ready CountDown!" + millisUntilFinished/ 1000);
+                Toast.makeText(getApplicationContext(), String.valueOf(millisUntilFinished / 1000), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFinish() {
+                Log.v(TAG, "Ready CountDown Complete!");
+            }
+        };
     }
     private void placeMoleTimer(){
         /* HINT:

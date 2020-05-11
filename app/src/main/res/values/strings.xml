@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Whack-A-Mole!</string>
+    <string name="empty">O</string>
+    <string name="mole">*</string>
+    <string name="dialog_meesage">Warning! Insane Whack-A_Mole incoming!</string>
+    <string name="dialog_title">Would you like to advance to advanced mode?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>
