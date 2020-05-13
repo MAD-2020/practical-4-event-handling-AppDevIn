@@ -52,6 +52,7 @@ public class Main2Activity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "GO!", Toast.LENGTH_SHORT).show();
 
                 placeMoleTimer();
+                isGamingRunning = true;
             }
         }.start();
     }
@@ -75,6 +76,7 @@ public class Main2Activity extends AppCompatActivity {
         };
 
         handler.postDelayed(runnable,1000);
+
 
 
     }
